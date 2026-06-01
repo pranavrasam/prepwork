@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prep Work | JEE Mock Test Practice</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="nav container">
+        <a class="brand" href="#home" aria-label="Prep Work home">
+          <span class="brand-mark">PW</span>
+          <span>Prep Work</span>
+        </a>
+        <div class="nav-actions">
+          <a href="#tests">Mock Tests</a>
+          <a href="#profile">Profile</a>
+          <a href="#host">Host Studio</a>
+          <button id="logoutBtn" class="ghost hidden">Logout</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero container">
+        <div class="hero-copy">
+          <p class="eyebrow">JEE practice, analytics, and host controls</p>
+          <h1>Practice smarter for JEE with personalised mock tests.</h1>
+          <p>
+            Prep Work lets students sign up, practise tests independently, receive marks instantly,
+            and track topic-wise analysis with a simple performance prediction in their profile.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#auth">Start practising</a>
+            <a class="button secondary" href="#host">Manage tests</a>
+          </div>
+          <div class="trust-row" aria-label="Prep Work highlights">
+            <span>Instant marks</span>
+            <span>Topic analytics</span>
+            <span>Host test editor</span>
+          </div>
+        </div>
+        <div class="hero-card" aria-label="Performance prediction preview">
+          <span class="pill">Prediction</span>
+          <strong id="heroPrediction">82%</strong>
+          <p>Projected readiness after recent practice trend.</p>
+          <div class="mini-chart"><span></span><span></span><span></span><span></span></div>
+        </div>
+      </section>
+
+      <section id="auth" class="section container auth-grid">
+        <div class="panel">
+          <h2>Login</h2>
+          <p class="muted">Continue as a student or host. Demo host: host@prepwork.test / host1234</p>
+          <form id="loginForm" class="stack">
+            <label>Email<input name="email" type="email" required placeholder="student@example.com" /></label>
+            <label>Password<input name="password" type="password" required placeholder="••••••••" /></label>
+            <button class="button primary" type="submit">Login</button>
+          </form>
+        </div>
+        <div class="panel accent-panel">
+          <h2>Sign up</h2>
+          <p class="muted">Use host code PREPWORK-HOST only when creating a host account.</p>
+          <form id="signupForm" class="stack">
+            <label>Name<input name="name" required placeholder="Your name" /></label>
+            <label>Email<input name="email" type="email" required placeholder="you@example.com" /></label>
+            <label>Password<input name="password" type="password" minlength="6" required placeholder="At least 6 characters" /></label>
+            <label>Account type
+              <select name="role">
+                <option value="student">Student</option>
+                <option value="host">Host</option>
+              </select>
+            </label>
+            <label>Host code<input name="hostCode" placeholder="Optional" /></label>
+            <button class="button secondary" type="submit">Create account</button>
+          </form>
+        </div>
+      </section>
+
+      <section id="tests" class="section container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Student workspace</p>
+            <h2>Available JEE mock tests</h2>
+          </div>
+          <button id="refreshTests" class="ghost">Refresh</button>
+        </div>
+        <div id="testsList" class="cards"></div>
+      </section>
+
+      <section id="practice" class="section container hidden">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Live practice</p>
+            <h2 id="practiceTitle">Mock test</h2>
+          </div>
+          <span id="practiceMeta" class="pill"></span>
+        </div>
+        <form id="practiceForm" class="question-list"></form>
+      </section>
+
+      <section id="profile" class="section container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Profile analysis</p>
+            <h2>Your performance prediction</h2>
+          </div>
+          <button id="refreshProfile" class="ghost">Update profile</button>
+        </div>
+        <div id="profilePanel" class="profile-grid"></div>
+      </section>
+
+      <section id="host" class="section container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Host studio</p>
+            <h2>Add or edit tests while students practise</h2>
+          </div>
+        </div>
+        <div class="host-layout">
+          <form id="testEditor" class="panel stack">
+            <input type="hidden" name="id" />
+            <label>Title<input name="title" required placeholder="JEE Maths Full Mock" /></label>
+            <label>Subject<input name="subject" required placeholder="Mathematics" /></label>
+            <label>Duration minutes<input name="durationMinutes" type="number" min="1" value="60" /></label>
+            <label>Difficulty<input name="difficulty" placeholder="Medium" /></label>
+            <label class="inline"><input name="published" type="checkbox" checked /> Published</label>
+            <label>Questions JSON
+              <textarea name="questions" rows="14" spellcheck="false"></textarea>
+            </label>
+            <div class="button-row">
+              <button class="button primary" type="submit">Save test</button>
+              <button id="newTestBtn" class="button secondary" type="button">New test</button>
+            </div>
+          </form>
+          <div class="panel">
+            <h3>Host test library</h3>
+            <p class="muted">Login as a host to see answers, edit tests, publish drafts, or remove tests.</p>
+            <div id="hostTests" class="host-tests"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" role="status" aria-live="polite"></div>
+    <script src="/app.js" defer></script>
+  </body>
+</html>
